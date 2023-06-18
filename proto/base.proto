@@ -1,0 +1,14 @@
+syntax = "proto3";
+option go_package= ".;proto";
+
+import "google/protobuf/timestamp.proto";
+
+message Base {
+  google.protobuf.Timestamp createAt = 2;
+  google.protobuf.Timestamp updateAt = 3;
+  google.protobuf.Timestamp deleteAt = 4;
+}
+
+message Success{
+  bool success = 1;
+}

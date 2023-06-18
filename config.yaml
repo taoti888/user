@@ -1,0 +1,44 @@
+# github.com/taoti888/user Global Configuration
+
+# zap logger configuration
+zap:
+  level: info
+  format: console
+  prefix: ""
+  director: logs
+  encodeLevel: CapitalLevelEncoder
+  stacktraceKey: stacktrace
+  maxAge: 10
+  showLine: true
+  logInConsole: true
+
+# consul configuration
+consul:
+  address: 10.102.81.2
+  port: 8500
+
+# system configuration
+system:
+  name: user_dev
+  port: 8080
+  tags:
+    - dev
+    - grpc
+    - v0.0.1
+  timeout: 1s
+  interval: 5s
+  deregisterCriticalServiceAfter: 1m
+  apiKey: xxxxxxxx
+
+# mysql connect configuration
+mysql:
+  host: "10.102.81.2"
+  port: "3306"
+  config: "charset=utf8mb4&parseTime=True&loc=Local"
+  dbname: "cloudsync"
+  username: "cloudsync"
+  password: "cloudsync2023"
+  maxIdleConns: 10
+  maxOpenConns: 100
+  logMode: ""
+  logZap: false

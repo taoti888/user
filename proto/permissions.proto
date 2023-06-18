@@ -1,0 +1,51 @@
+syntax = "proto3";
+option go_package=".;proto";
+package proto;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/any.proto";
+
+
+service Permissions {
+  rpc CreatePermissions(CreatePermissionsRequest) returns (PermissionsInfoResponse) {}
+  rpc GetPermissions(GetPermissionsRequest) returns (PermissionsInfoResponse) {}
+  rpc UpdatePermissions(UpdatePermissionsRequest) returns (PermissionsInfoResponse) {}
+  rpc DeletePermissions(DeletePermissionsRequest) returns (google.protobuf.Empty) {}
+  rpc AddResourceToPermissions(AddResourceRequest) returns (google.protobuf.Empty) {}
+}
+
+
+message CreatePermissionsRequest {
+  string name = 1;
+  string description = 2;
+  repeated string resources = 3;
+  repeated string actions = 4;
+}
+
+message GetPermissionsRequest {
+  uint32 id = 1;
+}
+
+message UpdatePermissionsRequest {
+  uint32 id = 1;
+  string description = 2;
+  repeated string resources = 3;
+  repeated string actions = 4;
+}
+
+message DeletePermissionsRequest{
+  uint32 id = 1;
+}
+
+message  PermissionsInfoResponse {
+  uint32 id = 1;
+  string name = 2;
+  string description = 3;
+  repeated string resources = 4;
+  repeated string actions = 5;
+}
+
+message AddResourceRequest{
+  uint32 permissionid = 1;
+  google.protobuf.Any details = 2;
+}

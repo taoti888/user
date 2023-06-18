@@ -1,0 +1,46 @@
+syntax = "proto3";
+option go_package=".;proto";
+package proto;
+
+import "google/protobuf/empty.proto";
+
+
+service Role {
+  rpc CreateRole(CreateRoleRequest) returns (RoleInfoResponse) {}
+  rpc GetRole(GetRoleRequest) returns (RoleInfoResponse) {}
+  rpc UpdateRole(UpdateRoleRequest) returns (RoleInfoResponse) {}
+  rpc DeleteRole(DeleteRoleRequest) returns (google.protobuf.Empty) {}
+  rpc AddPermissionsToRole(AddPermissionsRequest) returns (google.protobuf.Empty) {}
+}
+
+message CreateRoleRequest {
+  string name = 1;
+  string description = 2;
+  repeated uint32 permissions = 3;
+}
+
+message GetRoleRequest {
+  uint32 id = 1;
+}
+
+message UpdateRoleRequest {
+  uint32 id = 1;
+  string description = 2;
+  repeated uint32 permissions = 3;
+}
+
+message DeleteRoleRequest{
+  uint32 id = 1;
+}
+
+message   RoleInfoResponse {
+  uint32 id = 1;
+  string name = 2;
+  string description = 3;
+  repeated uint32 permissions = 4;
+}
+
+message AddPermissionsRequest{
+  uint32 roleid = 1;
+  repeated uint32 permission_ids = 2;
+}
